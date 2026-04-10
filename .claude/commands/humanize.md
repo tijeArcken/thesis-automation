@@ -29,11 +29,11 @@ These are standard in academic writing and must NOT be flagged or removed:
 
 - **Appropriate hedging:** "may suggest", "appears to", "arguably", "is consistent with", "the evidence indicates", "this likely reflects" — hedging is epistemically correct in empirical work.
 - **Passive voice:** "the model is estimated using OLS", "prices are deflated by the CPI" — standard in methodology sections.
-- **Formal register:** elevated vocabulary is expected. Do not simplify domain-specific terminology.
+- **Formal register:** elevated vocabulary is expected. Do not simplify "heteroskedasticity" to "unequal spread" or "cointegration" to "linked trend".
 - **Elegant variation:** acceptable in long academic prose to avoid repetitive use of the same term across paragraphs.
 - **Transition phrases:** "Furthermore", "Moreover", "In contrast" — these are academic connectives, not AI-isms.
 - **Section conclusion phrases:** "In conclusion" or "In summary" may remain if used correctly — do not delete; replace with a more specific academic equivalent if the phrase is empty.
-- **Disciplinary vocabulary:** keep all domain-specific terms as written.
+- **Disciplinary vocabulary:** keep all domain-specific terms that are standard in your field.
 
 ---
 
@@ -46,7 +46,7 @@ These are standard in academic writing and must NOT be flagged or removed:
 **Academic exception:** "significant" is acceptable when referring to statistical significance, or when used once with genuine justification.
 
 **Before:**
-> This paper makes a groundbreaking contribution to the evolving landscape of research, marking a pivotal moment in the field.
+> This paper makes a groundbreaking contribution to the evolving landscape of the field, marking a pivotal moment in the literature.
 
 **After:**
 > This paper contributes to the literature by applying novel methods to a long historical panel.
@@ -65,7 +65,7 @@ These appear in some AI-generated introductions or background sections.
 
 **Flag:** "studies show", "researchers argue", "experts believe", "observers have noted", "industry reports suggest", "some critics argue", "it is widely accepted that" (when no citation follows)
 
-**Fix:** Add a specific citation, or rewrite to be explicit: "Author et al. (Year) find that..." not "researchers have found that..."
+**Fix:** Add a specific citation, or rewrite to be explicit: "Smith et al. (2020) find that..." not "researchers have found that..."
 
 ---
 
@@ -76,10 +76,10 @@ These appear in some AI-generated introductions or background sections.
 **Fix:** Either delete the phrase, or convert it to a substantive claim with evidence.
 
 **Before:**
-> The model achieved the lowest RMSE, highlighting the importance of non-linear methods in forecasting.
+> The model achieved the lowest RMSE, highlighting the importance of non-linear methods in the field.
 
 **After:**
-> The model achieved the lowest RMSE, suggesting that non-linear relationships between the variables are empirically important.
+> The model achieved the lowest RMSE, suggesting that non-linear relationships between the target variable and predictors are empirically important.
 
 ---
 
@@ -161,6 +161,12 @@ Preserve single, calibrated hedges. Remove stacked qualifications:
 - "This paper makes an important contribution to the growing literature on..."
 
 **Fix:** Replace with a specific claim about what the finding implies for the literature, for policy, or for future research.
+
+**Before:**
+> Overall, these results underscore the importance of advanced methods in this field. The future looks bright for the application of these techniques.
+
+**After:**
+> These results suggest that non-linear methods outperform linear benchmarks in long-horizon forecasting, particularly when the relationship between variables is non-monotonic.
 
 ---
 
@@ -252,4 +258,4 @@ Do not include a "Draft rewrite" followed by a separate "Final rewrite" — go d
 
 ## Source
 
-Adapted from [blader/humanizer](https://github.com/blader/humanizer) (v2.2.0), which is based on [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing). Modified for academic thesis writing.
+Adapted from [blader/humanizer](https://github.com/blader/humanizer) (v2.2.0), which is based on [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing). Academic adaptations for thesis use.
