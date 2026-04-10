@@ -9,29 +9,24 @@ Run three parallel review agents on a thesis chapter — language, citation, and
 
 **Examples:**
 - `/deep-review writing/ch2_literature.md`
-- `/deep-review ch3` — resolves using the chapter map in CLAUDE.md section 7
+- `/deep-review ch3` — resolves to the methodology chapter in `writing/`
 - `/deep-review writing/ch1_introduction.md`
 
 ---
 
 ## Instructions
 
-You are a three-agent quality reviewer for an academic thesis. Your job is to simulate three expert reviewers working in parallel, each evaluating the chapter from a different angle, then synthesize their findings into a single actionable report.
-
-**Read CLAUDE.md before proceeding** to determine:
-- The chapter structure and file paths (section 7)
-- The references file path (section 9)
-- The starting literature (section 5) for citation cross-referencing
+You are a three-agent quality reviewer for an academic thesis. Read the project context from `CLAUDE.md` (research question, methods, starting literature) before starting. Your job is to simulate three expert reviewers working in parallel, each evaluating the chapter from a different angle, then synthesize their findings into a single actionable report.
 
 ### Step 1 — Resolve the file path
 
 If the user provides:
 - A full path: use it directly
-- A chapter name or abbreviation (e.g., `ch2`, `literature`, `methodology`): map to the corresponding file using the chapter structure in CLAUDE.md section 7
+- A chapter name or abbreviation (e.g., `ch2`, `literature`, `methodology`): map to the corresponding file in `writing/`
 
 Read the target file. If it doesn't exist or is empty (<100 words), stop and tell the user.
 
-Also read the references file if it exists — the Citation Agent will use it.
+Also read `papers/references.md` if it exists — the Citation Agent will use it.
 
 ---
 
@@ -63,8 +58,8 @@ Evaluate:
 - **Unsupported claims:** Empirical assertions without a citation
 - **Over-citation:** Places where too many citations are stacked without explanation
 - **Citation quality:** Are the cited papers actually strong sources for the claim being made?
-- **Missing citations:** Key claims that should cite the foundational literature listed in CLAUDE.md section 5
-- **Cross-check with references file:** Are all cited papers actually in the bibliography?
+- **Missing citations:** Key claims in the thesis domain that should cite the canonical literature (refer to CLAUDE.md Section 7 for the starting literature list)
+- **Cross-check with `papers/references.md`:** Are all cited papers actually in the bibliography?
 - **Quote integrity:** If any quotes are used, are they plausibly verbatim (not paraphrased and presented as quotes)?
 
 For each issue, quote the passage and specify what citation is needed or what the citation problem is.
@@ -77,7 +72,7 @@ For each issue, quote the passage and specify what citation is needed or what th
 Evaluate:
 - **Logical flow:** Do paragraphs build on each other? Is there a clear thread through the section?
 - **Topic sentences:** Does each paragraph start with a clear claim? Is the claim then defended?
-- **Evidence to Conclusion:** When evidence is cited, does the conclusion actually follow from it?
+- **Evidence → Conclusion:** When evidence is cited, does the conclusion actually follow from it?
 - **Non-sequiturs:** Are there jumps in logic where the reader would ask "wait, why does that follow?"
 - **Contribution clarity:** Is it clear what this section adds to the argument? Does it earn its place?
 - **Scope creep:** Are there tangents or off-topic paragraphs that should be cut or moved?
@@ -90,12 +85,12 @@ For each issue, describe the logical problem and suggest a structural fix.
 
 ### Step 3 — Score each dimension
 
-Score each agent's assessment on a 1-10 scale:
+Score each agent's assessment on a 1–10 scale:
 - **10** — publication-ready; no issues
-- **8-9** — minor fixes only
-- **6-7** — moderate issues; needs revision
-- **4-5** — significant problems; substantial rewrite needed
-- **1-3** — major structural or content problems
+- **8–9** — minor fixes only
+- **6–7** — moderate issues; needs revision
+- **4–5** — significant problems; substantial rewrite needed
+- **1–3** — major structural or content problems
 
 ---
 
@@ -104,38 +99,83 @@ Score each agent's assessment on a 1-10 scale:
 Output a unified review in this format:
 
 ```
-DEEP REVIEW — [Chapter Name]
-[Today's date]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  DEEP REVIEW — [Chapter Name]
+  [Today's date]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 OVERALL SCORES
+─────────────────────────────────────────────────────────
   Language / Style        [X/10]
   Citation / Evidence     [X/10]
   Argumentation / Logic   [X/10]
+  ─────────────
   Composite Score         [X/10]
 
 SUMMARY
-[2-3 sentence overall assessment]
+─────────────────────────────────────────────────────────
+[2–3 sentence overall assessment: what the chapter does well, and what is the most important thing to fix before submission]
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 AGENT 1 — LANGUAGE REVIEW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 [HIGH] Issues — must fix before submission
-[Issue with quoted passage and fix]
+──────────────────────────────────────────
+[Issue 1]
+> "[quoted passage]"
+Fix: [specific suggestion]
 
 [MEDIUM] Issues — should fix
-[Issue with quoted passage and fix]
+──────────────────────────────────────────
+[Issue 2]
+> "[quoted passage]"
+Fix: [suggestion]
 
 [LOW] Polish items
-[Issue with fix]
+──────────────────────────────────────────
+[Issue 3]
+Fix: [suggestion]
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 AGENT 2 — CITATION REVIEW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[HIGH/MEDIUM/LOW issues as above]
+[HIGH] Issues
+──────────────────────────────────────────
+[Issue 1 — unsupported claim, wrong source, etc.]
+> "[quoted passage]"
+Fix: [add citation X / replace citation Y / remove unsupported claim]
 
+[MEDIUM] Issues
+──────────────────────────────────────────
+[...]
+
+[LOW] Polish items
+──────────────────────────────────────────
+[...]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 AGENT 3 — ARGUMENTATION REVIEW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[HIGH/MEDIUM/LOW issues as above]
+[HIGH] Issues
+──────────────────────────────────────────
+[Issue 1 — logical gap, missing link, non-sequitur]
+> "[quoted passage or paragraph reference]"
+Fix: [structural suggestion]
 
+[MEDIUM] Issues
+──────────────────────────────────────────
+[...]
+
+[LOW] Polish items
+──────────────────────────────────────────
+[...]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ACTION PLAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Priority fixes (do these first):
 1. [Most important HIGH issue from any agent]
@@ -143,13 +183,16 @@ Priority fixes (do these first):
 3. [Third]
 
 After fixing: run `/deep-review [file]` again to re-evaluate.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 HUMANIZE PASS (automatic — runs after action plan)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Apply the full humanizer rewrite as defined in `.claude/commands/humanize.md`
-(3 passes: identify, rewrite, audit). Remove all AI-isms while preserving
+(3 passes: identify → rewrite → audit). Remove all AI-isms while preserving
 academic register. If the chapter had HIGH language issues, output the
 humanized version of the full chapter. If only MEDIUM/LOW issues, output
 humanized versions of only the flagged passages.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ---

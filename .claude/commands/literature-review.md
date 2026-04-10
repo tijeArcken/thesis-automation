@@ -4,27 +4,28 @@ Search for, annotate, and synthesize academic literature on a given topic releva
 `/literature-review [topic]`
 
 Examples:
-- `/literature-review LASSO forecasting performance`
-- `/literature-review qualitative coding methods`
-- `/literature-review survey methodology bias`
+- `/literature-review [your search topic]`
+- `/literature-review [method name] forecasting`
+- `/literature-review [dependent variable] prediction methods`
 
 ## Context
 
-**Read CLAUDE.md before proceeding** to determine:
-- Thesis topic and research question (section 1)
-- Research focus areas (section 4)
-- Methods of interest (section 4)
-- Starting literature (section 5)
-- Papers directory (section 9)
+Read the project context from `CLAUDE.md` at the repository root. The following sections are relevant:
+- **Section 4 (Research Question)** — core RQ and focus areas
+- **Section 5 (Methods)** — methods of interest
+- **Section 6 (Data Sources)** — key datasets
+- **Section 7 (Starting Literature)** — papers to cross-reference
+
+All project-specific details (topic, methods, data, key papers) are defined there.
 
 ## Process
 
 ### Step 1 — Scope the Topic
 - Clarify the specific question the literature should answer
-- Identify 3-5 search terms to use
+- Identify 3–5 search terms to use
 
 ### Step 2 — Find & Annotate Papers
-For each paper found in the papers directory or identified via web search, produce:
+For each paper found in `papers/` or identified via web search, produce:
 
 ```
 **[Author(s) (Year)] — "Title"**
@@ -32,13 +33,13 @@ For each paper found in the papers directory or identified via web search, produ
 - Data: [sample, countries, time period]
 - Key finding: [one clear sentence]
 - Evidence tier: [A = top journal / B = good journal / C = working paper / D = policy report]
-- Thesis relevance: [HIGH / MEDIUM / LOW] — [one sentence why]
-- Focus area: [which focus area from CLAUDE.md section 4 it connects to, or "background"]
+- Relevance to thesis: [HIGH / MEDIUM / LOW] — [one sentence why]
+- Focus area: [which focus area from CLAUDE.md Section 4 this connects to, or "background"]
 ```
 
 ### Step 3 — Synthesize
 - Group papers by theme or finding
-- Write a 3-5 sentence synthesis: what the body of evidence collectively shows
+- Write a 3–5 sentence synthesis: what the body of evidence collectively shows
 - Identify the most important gap: what is still unresolved that the thesis could address
 
 ### Step 4 — Recommend
@@ -47,4 +48,5 @@ For each paper found in the papers directory or identified via web search, produ
 - Recommend any additional searches to fill gaps
 
 ## Key Papers to Cross-Reference
-Check the starting literature listed in CLAUDE.md section 5 — these are the foundational papers for the thesis and should be cross-referenced in any literature search.
+
+Refer to the starting literature listed in CLAUDE.md Section 7. These are the canonical papers for this thesis and should be cross-referenced when relevant.
